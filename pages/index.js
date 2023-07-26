@@ -2,6 +2,8 @@ import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import { getSortedPostsData } from '../lib/posts';
+import Link from 'next/link';
+import Date from '../components/Date';
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
@@ -37,11 +39,11 @@ export default function Home({ allPostsData }) {
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
-              {title}
+              <Link href={`/posts/${id}`}>{title}</Link>
               <br />
-              {id}
-              <br />
-              {date}
+              <small className={utilStyles.lightText}>
+                <Date dateString={date} />
+              </small>
             </li>
           ))}
         </ul>
@@ -134,4 +136,26 @@ export default function Home({ allPostsData }) {
 // ! Implement getStaticProps
 
 // ! Render Markdown
-// start here
+
+// ! Polishing the Post Page
+
+// ! Polishing the Index Page
+
+// ***************************************************** //
+// ! *** API Routes *** !
+
+// ! Creating an API Routes
+// API Routes let you create an API endpoint inside a Next.js app.
+// You can do so by creating a function inside the pages/api directory that has the following format
+
+// ! Creating a simple API endpoint
+// Create a file called hello.js in pages/api and when you visit that route you will get a response from server.
+
+// ! API Routes Details
+// *** Do not fetch an API Route from getStaticProps or getStaticPaths
+// *** A Good Use Case: Handling Form Input
+
+// ****************************************************************** //
+// ! ***  Deploying Your Next.js App *** !
+
+// ! Pushing To Github
